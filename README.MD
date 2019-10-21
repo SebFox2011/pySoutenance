@@ -24,4 +24,20 @@ Il émet un signal sonore à chaque ouverure de la boite aux lettres
 
 
 Réalisation V2 du projet: 
-Le server envoi une notification mail à l'utilisateur dont l'adresse mail est renseignée. Il peut aussi  recoir une notification via tweeter.
+Le server envoi une notification mail à l'utilisateur dont l'adresse mail est renseignée. Il peut aussi  recoir une notification.
+
+
+## Utilisation
+
+Pour le server iot_serverBox:
+    sudo apt-get install python3-venv (si pas déjà installé)
+
+    python3 -m venv venv
+
+    . venv/bin/activate
+    
+    pip install Flask (si pas déjà installé)
+
+    export FLASK_APP=application.py 
+
+    flask run --host=0.0.0.0
