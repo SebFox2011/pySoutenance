@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO  # bibliothèque pour utiliser les GPIO
+import classes.RPi.GPIO as GPIO  # bibliothèque pour utiliser les GPIO
 import time              # bibliothèque pour gestion du temps
 from threading import Thread
 

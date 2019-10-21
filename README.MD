@@ -30,6 +30,9 @@ Le server envoi une notification mail à l'utilisateur dont l'adresse mail est r
 ## Utilisation
 
 Pour le server iot_serverBox:
+
+Mise ne place de l'environ
+
     sudo apt-get install python3-venv (si pas déjà installé)
 
     python3 -m venv venv
@@ -41,3 +44,17 @@ Pour le server iot_serverBox:
     export FLASK_APP=application.py 
 
     flask run --host=0.0.0.0
+
+Installation et configuration de la base donnée:
+
+pip install Flask-SQLAlchemy
+
+pip install Flask-Migrate
+
+flask db init
+
+flask db migrate
+
+flask db upgrade
+
+Puis ensuite mettre les jeux de données de test
