@@ -14,9 +14,11 @@ migrate = Migrate(app, db)
 
 from classes.evenements import EventEmitter
 
+events= EventEmitter.query.all()
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',events=events)
 
 if __name__ == '__main__':
     app.run()

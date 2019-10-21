@@ -15,6 +15,29 @@
         <div class="row">
             <h1>Iot_ServerBox</h1>
         </div>
+        <div class="=row">
+            <h2>Liste des 5 derniers événements</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th >Identifiant</th>
+                <th>Evénement</th>
+                <th>Date de création</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for item in events%}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.idEmetteur}}</td>
+                    <td>{{item.typeEvenement}}</td>
+                    <td>{{item.created_at.strftime('%d %b %Y')}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
