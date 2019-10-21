@@ -14,11 +14,18 @@ migrate = Migrate(app, db)
 
 from classes.evenements import EventEmitter
 
-events= EventEmitter.query.all()
 
 @app.route('/')
 def index():
+    events= EventEmitter.query.all()
     return render_template('index.html',events=events)
+
+@app.route('/event/delete/<int:id>')
+def deleteEvent(id):
+    event = EventEmitter.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
+    db.session.delete(event)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()

@@ -25,6 +25,7 @@
                 <th >Identifiant</th>
                 <th>Evénement</th>
                 <th>Date de création</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                     <td>{{item.idEmetteur}}</td>
                     <td>{{item.typeEvenement}}</td>
                     <td>{{item.created_at.strftime('%d %b %Y')}}</td>
+                    <td><a class="btn btn-danger" href="event/delete/{{ item.id }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>
