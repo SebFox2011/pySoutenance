@@ -16,7 +16,12 @@ from classes.evenements import EventEmitter
 
 
 @app.route('/')
-def index():
+def index5():
+    events= EventEmitter.query.limit(5)
+    return render_template('index.html',events=events)
+
+@app.route('/event')
+def indexAll():
     events= EventEmitter.query.all()
     return render_template('index.html',events=events)
 
@@ -24,6 +29,18 @@ def index():
 def deleteEvent(id):
     event = EventEmitter.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     db.session.delete(event)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/event/add',methods=["POST"])
+def addEvent():
+    # crée un événement
+    idEmetteur = request.data['idEmetteur']
+    typeEvenement = request.data['typeEvenement']
+    # Création de l'événement
+    event = EventEmitter(idEmetteur=idEmetteur, typeEvenement=typeEvenement)
+    #enregistre en bdd
+    db.session.add(event)
     db.session.commit()
     return redirect(url_for('index'))
 

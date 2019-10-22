@@ -58,3 +58,5 @@ flask db migrate
 flask db upgrade
 
 Puis ensuite mettre les jeux de données de test
+
+Pour le server iot_letterBox:
