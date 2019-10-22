@@ -34,12 +34,16 @@
                     <td>{{item.id}}</td>
                     <td>{{item.idEmetteur}}</td>
                     <td>{{item.typeEvenement}}</td>
-                    <td>{{item.created_at.strftime('%d %b %Y')}}</td>
+                    <td>{{item.created_at.strftime('%d %b %Y %H:%M:%S')}}</td>
                     <td><a class="btn btn-danger" href="event/delete/{{ item.id }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        <div class="row">
+            <a class="btn btn-success" href="/event">Voir tous les événements</a>
+        </div>
+        
     </div>
 </body>
 </html>

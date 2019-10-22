@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from classes.GPIO import GPIO_initialize
+from GPIO import GPIO_initialize
 # Numéro de la broche que nous allons utiliser pour lire les donnes
 #broche=27
 
