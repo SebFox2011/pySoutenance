@@ -30,19 +30,21 @@ def deleteEvent(id):
     event = EventEmitter.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     db.session.delete(event)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('index5'))
 
 @app.route('/event/add',methods=["POST"])
 def addEvent():
     # crée un événement
-    idEmetteur = request.data['idEmetteur']
-    typeEvenement = request.data['typeEvenement']
+    response = request.form
+    idEmetteur = response['idEmetteur']
+    typeEvenement = response['typeEvenement']
+    print(idEmetteur +' '+ typeEvenement )
     # Création de l'événement
     event = EventEmitter(idEmetteur=idEmetteur, typeEvenement=typeEvenement)
     #enregistre en bdd
     db.session.add(event)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('index5'))
 
 if __name__ == '__main__':
     app.run()
