@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, request,redirect, url_for,jsonify  # jinja2
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -17,13 +18,13 @@ from classes.evenements import EventEmitter
 
 @app.route('/')
 def index5():
-    events= EventEmitter.query.limit(5)
+    events= EventEmitter.query.order_by(desc(EventEmitter.created_at)).limit(5)
     return render_template('index.html',events=events)
 
 @app.route('/event')
 def indexAll():
     events= EventEmitter.query.all()
-    return render_template('index.html',events=events)
+    return render_template('event.html',events=events)
 
 @app.route('/event/delete/<int:id>')
 def deleteEvent(id):
