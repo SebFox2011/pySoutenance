@@ -1,8 +1,9 @@
-import classes.RPi.GPIO as GPIO  # bibliothèque pour utiliser les GPIO
+import RPi.GPIO as GPIO  # bibliothèque pour utiliser les GPIO
+from classes.GPIO import GPIO_initialize
 import time              # bibliothèque pour gestion du temps
 from threading import Thread
 
-class Led:
+class Buzzer:
     def __init__(self,numGPIO):
         self.numGPIO = numGPIO
         GPIO.setup(numGPIO,GPIO.OUT)  # la pin 18 réglée en sortie (output)
@@ -13,17 +14,13 @@ class Led:
     def off(self):
         GPIO.output(self.numGPIO,GPIO.LOW)   # sortie au niveau logique haut (3.3 V)
 
-    def sirene(self, numBlink, sleepTime):
-        i=0
-        while i < numBlink:
-            self.on()
-            time.sleep(sleepTime)
-            self.off()
-            time.sleep(sleepTime)
-            i+=1
+    def bip(self, sleepTime):
+        self.on()
+        time.sleep(sleepTime)
+        self.off()
 
-    def asyncBuzz (self, numBlink, sleepTime):
-        thread = Thread(target=self.blink, args=(numBlink,sleepTime))
+    def asyncBuzz (self, sleepTime):
+        thread = Thread(target=self.bip, args=(sleepTime))
         thread.start()
         return thread
 
@@ -35,3 +32,5 @@ class Led:
     @classmethod
     def  clean(cls):
         GPIO.cleanup()
+
+GPIO_initialize()

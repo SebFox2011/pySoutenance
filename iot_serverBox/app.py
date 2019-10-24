@@ -3,6 +3,7 @@ from flask import render_template, request,redirect, url_for,jsonify  # jinja2
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from flask_migrate import Migrate
+from classes.buzzer import Buzzer
 
 app = Flask(__name__)
 
@@ -15,6 +16,7 @@ migrate = Migrate(app, db)
 
 from classes.evenements import EventEmitter
 
+buzzer = Buzzer(14)
 
 @app.route('/')
 def index5():
@@ -35,6 +37,8 @@ def deleteEvent(id):
 
 @app.route('/event/add',methods=["POST"])
 def addEvent():
+    buzzer.bip(2)
+    event=True
     # crée un événement
     response = request.form
     idEmetteur = response['idEmetteur']
@@ -45,7 +49,7 @@ def addEvent():
     #enregistre en bdd
     db.session.add(event)
     db.session.commit()
-    return redirect(url_for('index5'))
+    return redirect(url_for('index5',event=event))
 
 if __name__ == '__main__':
     app.run()

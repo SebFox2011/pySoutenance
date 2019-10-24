@@ -59,5 +59,9 @@ flask db upgrade
 
 Puis ensuite mettre les jeux de données de test
 
+pour utiliser les GPIO:
+
+pip install RPi.GPIO
+
 Pour le server iot_letterBox:
 python3 application.py
