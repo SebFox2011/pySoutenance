@@ -30,6 +30,7 @@ Le server envoi une notification mail à l'utilisateur dont l'adresse mail est r
 ## Utilisation
 
 Pour le server iot_serverBox:
+Buzzer / led connecté sur la broche BCM14
 
 Mise ne place de l'environ
 
@@ -63,5 +64,12 @@ pour utiliser les GPIO:
 
 pip install RPi.GPIO
 
+pour twitter:
+
+pip install twython
+https://twython.readthedocs.io/en/latest/
+
 Pour le server iot_letterBox:
 python3 application.py
+
+Capteur de luminosité connecté sur la broche BCM4

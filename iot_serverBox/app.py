@@ -5,6 +5,7 @@ from sqlalchemy import desc
 from flask_migrate import Migrate
 from classes.buzzer import Buzzer
 from classes.mail import envoiMail
+from classes.twitter import tweet,tweetList
 
 app = Flask(__name__)
 
@@ -21,6 +22,7 @@ buzzer = Buzzer(14)
 
 @app.route('/')
 def index5():
+    tweetList()
     events= EventEmitter.query.order_by(desc(EventEmitter.created_at)).limit(5)
     return render_template('index.html',events=events)
 
@@ -39,7 +41,6 @@ def deleteEvent(id):
 @app.route('/event/add',methods=["POST"])
 def addEvent():
     buzzer.bip(2)
-    #event=True
     # crée un événement
     response = request.form
     idEmetteur = response['idEmetteur']
@@ -51,6 +52,7 @@ def addEvent():
     db.session.add(event)
     db.session.commit()
     #envoiMail() # A travailler car l'envoi ne fonctionne pasq
+    tweet()
     return redirect(url_for('index5',event=event))
 
 if __name__ == '__main__':

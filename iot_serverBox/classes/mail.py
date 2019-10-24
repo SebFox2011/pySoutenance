@@ -63,6 +63,3 @@ def envoiMail4():
         server.quit()
     except :
         print("error")
-
-print("mail")
-envoiMail4()

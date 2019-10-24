@@ -20,4 +20,4 @@ class LightSensor:
         return lightCount
 
 GPIO_initialize()
-lightSensor = LightSensor(4)#27
+lightSensor = LightSensor(4)
