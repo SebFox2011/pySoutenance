@@ -38,12 +38,31 @@ def envoiMail3():
     message['From'] = 'test@gmail.com'
     message['To'] = 'test@gmail.com'
     print(message)
-    server = smtplib.SMTP('smtp.gmail.com:587')
-    print(server)
+    try:
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        print(server)
+    except:
+        print("error")
     server.starttls()
     server.login('test@gmail.com','PASSWORD')
     server.send_message(message)
     server.quit()
 
+def envoiMail4():
+    try:
+        print("server connection")
+        server = smtplib.SMTP('ns0.ovh.net', 5025)
+        server.set_debuglevel(1)
+        print("server login")
+        server.login("lemail@ledomaine.com", "lepass")
+
+        print("send mail")
+
+        msg = r"gnng\nHello!" 
+        server.sendmail("lemail@ledomaine.com", "destinataire", msg)
+        server.quit()
+    except :
+        print("error")
+
 print("mail")
-envoiMail3()
+envoiMail4()
