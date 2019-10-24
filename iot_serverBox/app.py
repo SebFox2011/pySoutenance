@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from flask_migrate import Migrate
 from classes.buzzer import Buzzer
+from classes.mail import envoiMail
 
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ def deleteEvent(id):
 @app.route('/event/add',methods=["POST"])
 def addEvent():
     buzzer.bip(2)
-    event=True
+    #event=True
     # crée un événement
     response = request.form
     idEmetteur = response['idEmetteur']
@@ -49,6 +50,7 @@ def addEvent():
     #enregistre en bdd
     db.session.add(event)
     db.session.commit()
+    #envoiMail() # A travailler car l'envoi ne fonctionne pasq
     return redirect(url_for('index5',event=event))
 
 if __name__ == '__main__':
