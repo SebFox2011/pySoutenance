@@ -35,36 +35,3 @@ def envoiMail2():
     mailserver.login('test@gmail.com', 'PASSWORD')
     mailserver.sendmail('test@gmail.com', 'test@gmail.com', msg.as_string())
     mailserver.quit()
-
-def envoiMail3():
-    message = MIMEText('Ceci est un test !')
-    message['Subject'] = 'Objet du message'
-
-    message['From'] = 'test@gmail.com'
-    message['To'] = 'test@gmail.com'
-    print(message)
-    try:
-        server = smtplib.SMTP('smtp.gmail.com:587')
-        print(server)
-    except:
-        print("error")
-    server.starttls()
-    server.login('test@gmail.com','PASSWORD')
-    server.send_message(message)
-    server.quit()
-
-def envoiMail4():
-    try:
-        print("server connection")
-        server = smtplib.SMTP('ns0.ovh.net', 5025)
-        server.set_debuglevel(1)
-        print("server login")
-        server.login("lemail@ledomaine.com", "lepass")
-
-        print("send mail")
-
-        msg = r"gnng\nHello!" 
-        server.sendmail("lemail@ledomaine.com", "destinataire", msg)
-        server.quit()
-    except :
-        print("error")
